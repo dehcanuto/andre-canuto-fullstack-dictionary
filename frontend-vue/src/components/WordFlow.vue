@@ -1,13 +1,14 @@
 <template>
   <div class="min-h-screen">
     <div class="flex flex-col md:flex-row gap-4 mt-4 p-4">
-      <WordCard :entry="entry"></WordCard>
+      <div class="w-full md:w-1/3">
+        <WordCard :entry="entry" :loading="loading"></WordCard>
+      </div>
       <div class="w-full md:w-2/3">
         <div class="flex border-b">
           <button class="px-4 py-2 bg-gray-300">Word list</button>
           <button class="px-4 py-2 text-gray-400">Favorites</button>
         </div>
-
         <div class="grid grid-cols-6 gap-2 border p-2 text-center">
           <button v-for="(word, index) in words" :key="index" class="border py-2" @click="loadDefinition(word)">
             {{ word }}
@@ -30,6 +31,7 @@ const wordsMock = [
   '...', '...', '...', '...', '...',
 ];
 
+const loading = ref<boolean>(true)
 const words = ref<string[]>(wordsMock)
 const word = ref('hello')
 const entry = ref<DictionaryEntry | null>(null)
@@ -37,10 +39,13 @@ const error = ref('')
 
 const loadDefinition = async (word) => {
   try {
+    loading.value = true;
     error.value = ''
     entry.value = await fetchWordDefinition(word)
   } catch (err: any) {
     error.value = err.message
+  } finally {
+    loading.value = false;
   }
 }
 
