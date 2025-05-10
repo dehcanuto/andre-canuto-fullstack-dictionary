@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import WordFlow from '@components/WordFlow.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <div class="container mx-auto">
+      <WordFlow />
+    </div>
   </main>
 </template>
