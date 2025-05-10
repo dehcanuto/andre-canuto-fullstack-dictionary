@@ -21,10 +21,14 @@ coverage
 .vscode/*
 !.vscode/extensions.json
 .idea
+.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-
-*.tsbuildinfo
+db.json
+.env
+CheckErrors.txt
+file.nosync
+api

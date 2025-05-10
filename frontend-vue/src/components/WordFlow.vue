@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen">
     <div class="flex flex-col md:flex-row gap-4 mt-4 p-4">
-      <WordCard></WordCard>
+      <WordCard :entry="entry"></WordCard>
       <div class="w-full md:w-2/3">
         <div class="flex border-b">
           <button class="px-4 py-2 bg-gray-300">Word list</button>
@@ -9,9 +9,9 @@
         </div>
 
         <div class="grid grid-cols-6 gap-2 border p-2 text-center">
-          <div v-for="(word, index) in words" :key="index" class="border py-2">
+          <button v-for="(word, index) in words" :key="index" class="border py-2" @click="loadDefinition(word)">
             {{ word }}
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -19,7 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
+import { fetchWordDefinition, DictionaryEntry } from '@/services/dictionaryService'
 import WordCard from "@components/WordCard.vue"
 
 const wordsMock = [
@@ -29,11 +30,21 @@ const wordsMock = [
   '...', '...', '...', '...', '...',
 ];
 
-const words = ref<string[]>(wordsMock);
-</script>
+const words = ref<string[]>(wordsMock)
+const word = ref('hello')
+const entry = ref<DictionaryEntry | null>(null)
+const error = ref('')
 
-<style>
-body {
-  font-family: sans-serif;
+const loadDefinition = async (word) => {
+  try {
+    error.value = ''
+    entry.value = await fetchWordDefinition(word)
+  } catch (err: any) {
+    error.value = err.message
+  }
 }
-</style>
+
+onMounted(() => {
+  void loadDefinition(word.value)
+})
+</script>

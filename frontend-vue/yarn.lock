@@ -2197,7 +2197,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.8.2":
+"axios@npm:^1.8.2, axios@npm:^1.9.0":
   version: 1.9.0
   resolution: "axios@npm:1.9.0"
   dependencies:
@@ -3859,6 +3859,7 @@ __metadata:
     "@vue/eslint-config-typescript": "npm:^14.5.0"
     "@vue/test-utils": "npm:^2.4.6"
     "@vue/tsconfig": "npm:^0.7.0"
+    axios: "npm:^1.9.0"
     cypress: "npm:^14.2.1"
     eslint: "npm:^9.22.0"
     eslint-plugin-cypress: "npm:^4.2.0"

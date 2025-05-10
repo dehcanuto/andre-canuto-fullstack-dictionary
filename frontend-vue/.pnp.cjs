@@ -38,6 +38,7 @@ const RAW_RUNTIME_STATE =
           ["@vue/eslint-config-typescript", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:14.5.0"],\
           ["@vue/test-utils", "npm:2.4.6"],\
           ["@vue/tsconfig", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:0.7.0"],\
+          ["axios", "npm:1.9.0"],\
           ["cypress", "npm:14.3.3"],\
           ["eslint", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:9.26.0"],\
           ["eslint-plugin-cypress", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:4.3.0"],\
@@ -4892,6 +4893,7 @@ const RAW_RUNTIME_STATE =
           ["@vue/eslint-config-typescript", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:14.5.0"],\
           ["@vue/test-utils", "npm:2.4.6"],\
           ["@vue/tsconfig", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:0.7.0"],\
+          ["axios", "npm:1.9.0"],\
           ["cypress", "npm:14.3.3"],\
           ["eslint", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:9.26.0"],\
           ["eslint-plugin-cypress", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:4.3.0"],\
