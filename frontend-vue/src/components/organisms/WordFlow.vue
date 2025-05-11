@@ -5,42 +5,32 @@
         <WordCard :entry="entry" :loading="loading"></WordCard>
       </div>
       <div class="w-full md:w-2/3">
-        <div class="flex border-b">
-          <button
-            class="px-4 py-2 text-gray-400"
-            :class="{ 'bg-gray-300 text-gray-800': view === 'word-list' }"
-            @click="toggleView('word-list')"
-          >
-            Word list
-          </button>
-          <button
-            class="px-4 py-2 text-gray-400"
-            :class="{ 'bg-gray-300 text-gray-800': view === 'favorites' }"
-            @click="toggleView('favorites')"
-          >
-            Favorites
-          </button>
-        </div>
-        <div v-if="view === 'word-list'" class="grid grid-cols-6 gap-2 border p-2 text-center">
-          <button
-            v-for="(word, index) in words"
-            :key="index"
-            class="border py-2"
-            @click="loadDefinition(word)"
-          >
-            {{ word }}
-          </button>
-        </div>
-        <div v-if="view === 'favorites'" class="grid grid-cols-6 gap-2 border p-2 text-center">
-          <button
-            v-for="(word, index) in favorites"
-            :key="index"
-            class="border py-2"
-            @click="loadDefinition(word)"
-          >
-            {{ word.word }}
-          </button>
-        </div>
+        <WordTabs :tabs="tabList">
+          <template #word-list>
+            <div class="grid grid-cols-6 gap-2 border p-2 text-center">
+              <button
+                v-for="(word, index) in words"
+                :key="index"
+                class="border py-2"
+                @click="loadDefinition(word)"
+              >
+                {{ word }}
+              </button>
+            </div>
+          </template>
+          <template #favorites>
+            <div class="grid grid-cols-6 gap-2 border p-2 text-center">
+              <button
+                v-for="(word, index) in favorites"
+                :key="index"
+                class="border py-2"
+                @click="loadDefinition(word.word)"
+              >
+                {{ word.word }}
+              </button>
+            </div>
+          </template>
+        </WordTabs>
       </div>
     </div>
   </div>
@@ -51,6 +41,7 @@ import { ref, onMounted } from 'vue'
 import { fetchWordDefinition } from '@/services/dictionaryService'
 import { type DictionaryEntry } from '@/models/dictionary'
 import { useFavorites } from '@/composables/useFavorites'
+import WordTabs from '@components/molecules/WordTabs.vue'
 import WordCard from '@components/molecules/WordCard.vue'
 
 const wordsMock = [
@@ -84,6 +75,11 @@ const word = ref('hello')
 const entry = ref<DictionaryEntry | null>(null)
 const view = ref('word-list')
 const error = ref('')
+
+const tabList = [
+  { name: 'word-list', label: 'Word List' },
+  { name: 'favorites', label: 'Favorites' },
+]
 
 function toggleView(goesTo: 'word-list' | 'favorites'): void {
   view.value = goesTo
