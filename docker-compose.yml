@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6
+    container_name: nestjs-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    networks:
+      - backend_network
+
+  backend:
+    build: ./backend-nestjs
+    volumes:
+      - .:/backend-nestjs
+      - /backend-nestjs/node_modules
+    container_name: backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend-nestjs/.env
+    depends_on:
+      - mongodb
+    networks:
+      - backend_network
+
+  frontend:
+    build: ./frontend-vue
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend-vue:/app
+      - /app/node_modules
+    working_dir: /app
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - backend_network
+
+volumes:
+  mongo_data:
+  node_modules:
+
+networks:
+  backend_network:
+    driver: bridge

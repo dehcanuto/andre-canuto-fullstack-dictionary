@@ -33,6 +33,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/core", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
           ["@nestjs/jwt", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.0"],\
           ["@nestjs/mongoose", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.3"],\
+          ["@nestjs/passport", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.5"],\
           ["@nestjs/platform-express", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
           ["@nestjs/schematics", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.2.3"],\
           ["@nestjs/testing", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
@@ -40,12 +41,13 @@ const RAW_RUNTIME_STATE =
           ["@types/express", "npm:5.0.1"],\
           ["@types/jest", "npm:29.5.14"],\
           ["@types/node", "npm:20.17.46"],\
-          ["@types/passport", "npm:0.4.7"],\
+          ["@types/passport", "npm:1.0.17"],\
           ["@types/passport-jwt", "npm:4.0.1"],\
           ["@types/supertest", "npm:6.0.3"],\
           ["@typescript-eslint/eslint-plugin", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:8.32.0"],\
           ["@typescript-eslint/parser", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:8.32.0"],\
           ["bcryptjs", "npm:3.0.2"],\
+          ["class-validator", "npm:0.14.2"],\
           ["eslint", "npm:8.57.1"],\
           ["eslint-config-prettier", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:9.1.0"],\
           ["eslint-plugin-prettier", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:5.4.0"],\
@@ -1556,7 +1558,7 @@ const RAW_RUNTIME_STATE =
           ["@types/reflect-metadata", null],\
           ["@types/rxjs", null],\
           ["class-transformer", null],\
-          ["class-validator", null],\
+          ["class-validator", "npm:0.14.2"],\
           ["file-type", "npm:20.4.1"],\
           ["iterare", "npm:1.2.1"],\
           ["reflect-metadata", "npm:0.2.2"],\
@@ -1679,6 +1681,32 @@ const RAW_RUNTIME_STATE =
           "@types/rxjs",\
           "mongoose",\
           "rxjs"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@nestjs/passport", [\
+      ["npm:11.0.5", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/@nestjs-passport-npm-11.0.5-7176f1ced2-10c0.zip/node_modules/@nestjs/passport/",\
+        "packageDependencies": [\
+          ["@nestjs/passport", "npm:11.0.5"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.5", {\
+        "packageLocation": "./.yarn/__virtual__/@nestjs-passport-virtual-837cf89670/6/.yarn/berry/cache/@nestjs-passport-npm-11.0.5-7176f1ced2-10c0.zip/node_modules/@nestjs/passport/",\
+        "packageDependencies": [\
+          ["@nestjs/common", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
+          ["@nestjs/passport", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.5"],\
+          ["@types/nestjs__common", null],\
+          ["@types/passport", "npm:1.0.17"],\
+          ["passport", "npm:0.7.0"]\
+        ],\
+        "packagePeers": [\
+          "@nestjs/common",\
+          "@types/nestjs__common",\
+          "@types/passport",\
+          "passport"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2258,14 +2286,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/passport", [\
-      ["npm:0.4.7", {\
-        "packageLocation": "../../../../../.yarn/berry/cache/@types-passport-npm-0.4.7-41ee4f6974-10c0.zip/node_modules/@types/passport/",\
-        "packageDependencies": [\
-          ["@types/express", "npm:5.0.1"],\
-          ["@types/passport", "npm:0.4.7"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:1.0.17", {\
         "packageLocation": "../../../../../.yarn/berry/cache/@types-passport-npm-1.0.17-f7599941ec-10c0.zip/node_modules/@types/passport/",\
         "packageDependencies": [\
@@ -2367,6 +2387,15 @@ const RAW_RUNTIME_STATE =
           ["@types/methods", "npm:1.1.4"],\
           ["@types/superagent", "npm:8.1.9"],\
           ["@types/supertest", "npm:6.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/validator", [\
+      ["npm:13.15.0", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/@types-validator-npm-13.15.0-4f9b0b87d2-10c0.zip/node_modules/@types/validator/",\
+        "packageDependencies": [\
+          ["@types/validator", "npm:13.15.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3637,6 +3666,18 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../../.yarn/berry/cache/cjs-module-lexer-npm-1.4.3-4a46e7bf6c-10c0.zip/node_modules/cjs-module-lexer/",\
         "packageDependencies": [\
           ["cjs-module-lexer", "npm:1.4.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["class-validator", [\
+      ["npm:0.14.2", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/class-validator-npm-0.14.2-e722f4bf99-10c0.zip/node_modules/class-validator/",\
+        "packageDependencies": [\
+          ["@types/validator", "npm:13.15.0"],\
+          ["class-validator", "npm:0.14.2"],\
+          ["libphonenumber-js", "npm:1.12.8"],\
+          ["validator", "npm:13.15.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -6518,6 +6559,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["libphonenumber-js", [\
+      ["npm:1.12.8", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/libphonenumber-js-npm-1.12.8-806f5fa775-10c0.zip/node_modules/libphonenumber-js/",\
+        "packageDependencies": [\
+          ["libphonenumber-js", "npm:1.12.8"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["lines-and-columns", [\
       ["npm:1.2.4", {\
         "packageLocation": "../../../../../.yarn/berry/cache/lines-and-columns-npm-1.2.4-d6c7cc5799-10c0.zip/node_modules/lines-and-columns/",\
@@ -7177,6 +7227,7 @@ const RAW_RUNTIME_STATE =
           ["@nestjs/core", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
           ["@nestjs/jwt", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.0"],\
           ["@nestjs/mongoose", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.3"],\
+          ["@nestjs/passport", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:11.0.5"],\
           ["@nestjs/platform-express", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
           ["@nestjs/schematics", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.2.3"],\
           ["@nestjs/testing", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:10.4.17"],\
@@ -7184,12 +7235,13 @@ const RAW_RUNTIME_STATE =
           ["@types/express", "npm:5.0.1"],\
           ["@types/jest", "npm:29.5.14"],\
           ["@types/node", "npm:20.17.46"],\
-          ["@types/passport", "npm:0.4.7"],\
+          ["@types/passport", "npm:1.0.17"],\
           ["@types/passport-jwt", "npm:4.0.1"],\
           ["@types/supertest", "npm:6.0.3"],\
           ["@typescript-eslint/eslint-plugin", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:8.32.0"],\
           ["@typescript-eslint/parser", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:8.32.0"],\
           ["bcryptjs", "npm:3.0.2"],\
+          ["class-validator", "npm:0.14.2"],\
           ["eslint", "npm:8.57.1"],\
           ["eslint-config-prettier", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:9.1.0"],\
           ["eslint-plugin-prettier", "virtual:f7cd10ca643f871db98085adc76d20c9f8b6ae559c31511f3271aa66e2d6518ab53f265a386756df3cd76bfa93ecdc1c55f03c5c4d39c0c88fedc12bec557fd7#npm:5.4.0"],\
@@ -9235,6 +9287,15 @@ const RAW_RUNTIME_STATE =
           ["@types/istanbul-lib-coverage", "npm:2.0.6"],\
           ["convert-source-map", "npm:2.0.0"],\
           ["v8-to-istanbul", "npm:9.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["validator", [\
+      ["npm:13.15.0", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/validator-npm-13.15.0-b048a51909-10c0.zip/node_modules/validator/",\
+        "packageDependencies": [\
+          ["validator", "npm:13.15.0"]\
         ],\
         "linkType": "HARD"\
       }]\
