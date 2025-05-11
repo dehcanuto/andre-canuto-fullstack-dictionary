@@ -14,9 +14,10 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@types/*": ["src/types/*"],
+      "@models/*": ["src/models/*"],
       "@utils/*": ["src/utils/*"],
-      "@services/*": ["src/services/*"]
+      "@services/*": ["src/services/*"],
+      "@icons/*": ["src/components/icons/*"],
     }
   },
   "references": [

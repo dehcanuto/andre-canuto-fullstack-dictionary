@@ -1,8 +1,9 @@
-import { DictionaryEntry } from '@/models/ dictionary'
+import { DictionaryEntry } from '@/models/dictionary'
 import axios from 'axios'
 
 const BASE_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en'
-const ALL_WORDS = 'https://github.com/meetDeveloper/freeDictionaryAPI/blob/master/meta/wordList/english.txt'
+const ALL_WORDS =
+  'https://github.com/meetDeveloper/freeDictionaryAPI/blob/master/meta/wordList/english.txt'
 
 export async function fetchWordDefinition(word: string): Promise<DictionaryEntry[]> {
   try {
