@@ -15,7 +15,7 @@
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
       "@models/*": ["src/models/*"],
-      "@utils/*": ["src/utils/*"],
+      "@composables/*": ["src/composables/*"],
       "@services/*": ["src/services/*"],
       "@icons/*": ["src/components/icons/*"],
     }

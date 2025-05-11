@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WordFlow from '@components/WordFlow.vue'
+import WordFlow from '@components/organisms/WordFlow.vue'
 </script>
 
 <template>

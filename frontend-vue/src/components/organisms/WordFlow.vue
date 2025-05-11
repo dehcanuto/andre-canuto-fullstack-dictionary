@@ -50,8 +50,8 @@
 import { ref, onMounted } from 'vue'
 import { fetchWordDefinition } from '@/services/dictionaryService'
 import { type DictionaryEntry } from '@/models/dictionary'
-import { useFavorites } from '../composables/useFavorites'
-import WordCard from '@components/WordCard.vue'
+import { useFavorites } from '@/composables/useFavorites'
+import WordCard from '@components/molecules/WordCard.vue'
 
 const wordsMock = [
   'hello',
