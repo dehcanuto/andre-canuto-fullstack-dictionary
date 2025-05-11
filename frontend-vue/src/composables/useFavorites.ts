@@ -19,17 +19,21 @@ if (stored) {
 }
 
 // Persiste sempre que mudar
-watch(favorites, (newVal) => {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal))
-}, { deep: true })
+watch(
+  favorites,
+  (newVal) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal))
+  },
+  { deep: true },
+)
 
 export function useFavorites() {
   const handleAddOrRemoveFavorite = (word: DictionaryEntry) => {
-    const exists = favorites.value.find(w => w.word === word.word)
+    const exists = favorites.value.find((w) => w.word === word.word)
     if (!exists) {
       favorites.value.push(word)
     } else {
-      const index = favorites.value.findIndex(w => w.word === word.word)
+      const index = favorites.value.findIndex((w) => w.word === word.word)
       if (index !== -1) favorites.value.splice(index, 1)
     }
   }

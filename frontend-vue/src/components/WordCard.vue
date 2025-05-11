@@ -1,18 +1,17 @@
 <template>
   <div v-if="!loading" class="">
     <div class="relative border bg-purple-100 text-center py-8">
-      <div class="absolute top-2 right-2 text-xl" :class="{ 'text-red-500': isFavorite(entry) }" @click="handleAddOrRemoveFavorite(entry)">
+      <div
+        class="absolute top-2 right-2 text-xl"
+        :class="{ 'text-red-500': isFavorite(entry) }"
+        @click="handleAddOrRemoveFavorite(entry)"
+      >
         <icon-favorite></icon-favorite>
       </div>
       <h1 class="text-2xl font-semibold">{{ entry?.word }}</h1>
       <p class="text-xl">{{ entry?.phonetic }}</p>
     </div>
-    <div class="flex items-center mt-4 gap-2">
-      <button class="text-2xl">&#9654;</button>
-      <div class="w-full h-2 bg-gray-300 rounded">
-        <div class="h-2 bg-blue-400 rounded" style="width: 60%"></div>
-      </div>
-    </div>
+    <audio-player :audio="entry?.phonetics[0].audio"></audio-player>
     <div class="mt-4">
       <h2 class="text-xl font-bold">Meanings</h2>
       <ul
@@ -50,9 +49,10 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useFavorites } from '@/composables/useFavorites';
+import { useFavorites } from '@/composables/useFavorites'
 import { type DictionaryEntry } from '@models/dictionary'
 import IconFavorite from '@icons/IconFavorite.vue'
+import AudioPlayer from './AudioPlayer.vue'
 
 const { isFavorite, handleAddOrRemoveFavorite } = useFavorites()
 const props = defineProps<{ entry?: DictionaryEntry; loading: boolean }>()

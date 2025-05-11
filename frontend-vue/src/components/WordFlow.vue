@@ -6,8 +6,18 @@
       </div>
       <div class="w-full md:w-2/3">
         <div class="flex border-b">
-          <button class="px-4 py-2 text-gray-400" :class="{ 'bg-gray-300 text-gray-800': view === 'word-list' }" @click="toggleView('word-list')">Word list</button>
-          <button class="px-4 py-2 text-gray-400" :class="{ 'bg-gray-300 text-gray-800': view === 'favorites' }" @click="toggleView('favorites')">
+          <button
+            class="px-4 py-2 text-gray-400"
+            :class="{ 'bg-gray-300 text-gray-800': view === 'word-list' }"
+            @click="toggleView('word-list')"
+          >
+            Word list
+          </button>
+          <button
+            class="px-4 py-2 text-gray-400"
+            :class="{ 'bg-gray-300 text-gray-800': view === 'favorites' }"
+            @click="toggleView('favorites')"
+          >
             Favorites
           </button>
         </div>
