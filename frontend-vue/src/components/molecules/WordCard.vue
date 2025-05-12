@@ -3,15 +3,15 @@
     <div class="relative border bg-purple-100 text-center py-8">
       <div
         class="absolute top-2 right-2 text-xl"
-        :class="{ 'text-red-500': isFavorite(entry) }"
-        @click="handleAddOrRemoveFavorite(entry)"
+        :class="{ 'text-red-500': isFavorite(entry?.word) }"
+        @click="handleAddOrRemoveFavorite(entry?.word)"
       >
         <icon-favorite></icon-favorite>
       </div>
       <h1 class="text-2xl font-semibold">{{ entry?.word }}</h1>
       <p class="text-xl">{{ entry?.phonetic }}</p>
     </div>
-    <audio-player :audio="entry?.phonetics[0].audio"></audio-player>
+    <audio-player v-if="entry?.phonetics.length" :audio="entry?.phonetics[0].audio"></audio-player>
     <div class="mt-4">
       <h2 class="text-xl font-bold">Meanings</h2>
       <ul
@@ -54,6 +54,7 @@ import { type DictionaryEntry } from '@models/dictionary'
 import IconFavorite from '@icons/IconFavorite.vue'
 import AudioPlayer from './AudioPlayer.vue'
 
-const { isFavorite, handleAddOrRemoveFavorite } = useFavorites()
+const { isFavorite, handleAddOrRemoveFavorite } = useFavorites();
+
 const props = defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
 </script>
