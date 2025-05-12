@@ -17,17 +17,22 @@
                 {{ word }}
               </button>
             </div>
+            <div class="flex items-center justify-end mt-4">
+              <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Carregar mais palavras</button>
+            </div>
           </template>
           <template #favorites>
             <div class="grid grid-cols-6 gap-2 border p-2 text-center">
               <button
+                v-if="favorites.length"
                 v-for="(word, index) in favorites"
                 :key="index"
                 class="border py-2"
-                @click="loadDefinition(word.word)"
+                @click="loadDefinition(word)"
               >
                 {{ word.word }}
               </button>
+              <span v-else class="col-span-2">Sem favoritos registrados.</span>
             </div>
           </template>
         </WordTabs>
@@ -38,42 +43,18 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { fetchWordDefinition } from '@/services/dictionaryService'
+import { fetchWordDefinition, fetchWords } from '@/services/dictionaryService'
 import { type DictionaryEntry } from '@/models/dictionary'
 import { useFavorites } from '@/composables/useFavorites'
 import WordTabs from '@components/molecules/WordTabs.vue'
 import WordCard from '@components/molecules/WordCard.vue'
 
-const wordsMock = [
-  'hello',
-  'today',
-  'great',
-  'logic',
-  'never',
-  'peace',
-  'chair',
-  'diary',
-  'value',
-  'common',
-  'stop',
-  'watch',
-  'sun',
-  'review',
-  'bass',
-  '...',
-  '...',
-  '...',
-  '...',
-  '...',
-]
-
-const { favorites } = useFavorites()
+const { favorites, fetchFavorites } = useFavorites()
 
 const loading = ref<boolean>(true)
-const words = ref<string[]>(wordsMock)
+const words = ref<string[]>([])
 const word = ref('hello')
 const entry = ref<DictionaryEntry | null>(null)
-const view = ref('word-list')
 const error = ref('')
 
 const tabList = [
@@ -81,8 +62,10 @@ const tabList = [
   { name: 'favorites', label: 'Favorites' },
 ]
 
-function toggleView(goesTo: 'word-list' | 'favorites'): void {
-  view.value = goesTo
+const init = async () => {
+  void loadDefinition(word.value)
+  void listWords()
+  await fetchFavorites()
 }
 
 const loadDefinition = async (word: string) => {
@@ -97,7 +80,12 @@ const loadDefinition = async (word: string) => {
   }
 }
 
+const listWords = async () => {
+  const response = await fetchWords()
+  words.value = response.results
+}
+
 onMounted(() => {
-  void loadDefinition(word.value)
+  void init()
 })
 </script>

@@ -1,16 +1,23 @@
 import { DictionaryEntry } from '@/models/dictionary'
-import axios from 'axios'
+import api from './api'
 
-const BASE_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en'
-const ALL_WORDS =
-  'https://github.com/meetDeveloper/freeDictionaryAPI/blob/master/meta/wordList/english.txt'
+const API_URL = 'http://localhost:3000'
+
+export async function fetchWords(): Promise<ApiResponse> {
+  try {
+    const response = await api.get<DictionaryEntry[]>(`${API_URL}/entries/en`)
+    return response.data
+  } catch (error: any) {
+    throw new Error('Palavras não encontradas ou erro na requisição.')
+  }
+}
 
 export async function fetchWordDefinition(word: string): Promise<DictionaryEntry[]> {
   try {
-    const response = await axios.get<DictionaryEntry[]>(`${BASE_URL}/${word}`)
+    const response = await api.get<DictionaryEntry[]>(`${API_URL}/entries/en/${word}`)
     return response.data[0]
   } catch (error: any) {
-    console.error(`Erro ao buscar definição para "${word}":`, error)
+    console.error(`Erro ao buscar definição para ${word}:`, error)
     throw new Error('Palavra não encontrada ou erro na requisição.')
   }
 }

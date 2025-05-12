@@ -1,50 +1,60 @@
-import { ref, watch } from 'vue'
-import { type DictionaryEntry } from '@/models/dictionary'
-
-const STORAGE_KEY = 'favorites'
-
-/**
- * Global reactive array of favorite words.
- */
-const favorites = ref<DictionaryEntry[]>([])
-
-// Carrega ao inicializar o módulo
-const stored = localStorage.getItem(STORAGE_KEY)
-if (stored) {
-  try {
-    favorites.value = JSON.parse(stored)
-  } catch (e) {
-    console.error('Failed to parse favorites from storage:', e)
-  }
-}
-
-// Persiste sempre que mudar
-watch(
-  favorites,
-  (newVal) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newVal))
-  },
-  { deep: true },
-)
+import { ref } from 'vue';
+import api from '@/services/api';
 
 export function useFavorites() {
-  const handleAddOrRemoveFavorite = (word: DictionaryEntry) => {
-    const exists = favorites.value.find((w) => w.word === word.word)
-    if (!exists) {
-      favorites.value.push(word)
-    } else {
-      const index = favorites.value.findIndex((w) => w.word === word.word)
-      if (index !== -1) favorites.value.splice(index, 1)
-    }
-  }
+  const favorites = ref<string[]>([]);
 
-  const isFavorite = (word: DictionaryEntry): boolean => {
-    return favorites.value.some((w) => w.word === word.word)
-  }
+  const fetchFavorites = async () => {
+    try {
+      const response = await api.get(`/user/me/favorites`);
+      if (response.status === 200) {
+        favorites.value = response.data;
+      }
+    } catch (error) {
+      console.error('Erro ao listar favoritos:', error);
+    }
+  };
+
+  const handleAddOrRemoveFavorite = async (word: string) => {
+    if (!isFavorite(word)) {
+      await addFavorite(word);
+    } else {
+      await removeFavorite(word);
+    }
+  };
+
+  const addFavorite = async (word: string) => {
+    try {
+      const response = await api.post(`/entries/en/${word}/favorite`);
+      if (response.status === 200) {
+        favorites.value = [...favorites.value, word];
+      }
+    } catch (error) {
+      console.error('Erro ao adicionar favorito:', error);
+    }
+  };
+
+  const removeFavorite = async (word: string) => {
+    try {
+      const response = await api.delete(`/entries/en/${word}/unfavorite`);
+      if (response.status === 200) {
+        favorites.value = favorites.value.filter(fav => fav !== word);
+      }
+    } catch (error) {
+      console.error('Erro ao remover favorito:', error);
+    }
+  };
+
+  const isFavorite = (word: string) => {
+    return favorites.value.includes(word);
+  };
 
   return {
     favorites,
-    handleAddOrRemoveFavorite,
+    addFavorite,
+    removeFavorite,
     isFavorite,
-  }
+    fetchFavorites,
+    handleAddOrRemoveFavorite,
+  };
 }
