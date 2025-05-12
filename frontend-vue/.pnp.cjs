@@ -38,6 +38,7 @@ const RAW_RUNTIME_STATE =
           ["@vue/eslint-config-typescript", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:14.5.0"],\
           ["@vue/test-utils", "npm:2.4.6"],\
           ["@vue/tsconfig", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:0.7.0"],\
+          ["autoprefixer", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:10.4.21"],\
           ["axios", "npm:1.9.0"],\
           ["cypress", "npm:14.3.3"],\
           ["eslint", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:9.26.0"],\
@@ -50,6 +51,7 @@ const RAW_RUNTIME_STATE =
           ["npm-run-all2", "npm:7.0.2"],\
           ["oxlint", "npm:0.16.10"],\
           ["pinia", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:3.0.2"],\
+          ["postcss", "npm:8.5.3"],\
           ["prettier", "npm:3.5.3"],\
           ["start-server-and-test", "npm:2.0.11"],\
           ["tailwindcss", "npm:4.1.6"],\
@@ -2952,6 +2954,34 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["autoprefixer", [\
+      ["npm:10.4.21", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/autoprefixer-npm-10.4.21-0dd6f0f60c-10c0.zip/node_modules/autoprefixer/",\
+        "packageDependencies": [\
+          ["autoprefixer", "npm:10.4.21"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:10.4.21", {\
+        "packageLocation": "./.yarn/__virtual__/autoprefixer-virtual-0cbcaff307/6/.yarn/berry/cache/autoprefixer-npm-10.4.21-0dd6f0f60c-10c0.zip/node_modules/autoprefixer/",\
+        "packageDependencies": [\
+          ["@types/postcss", null],\
+          ["autoprefixer", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:10.4.21"],\
+          ["browserslist", "npm:4.24.5"],\
+          ["caniuse-lite", "npm:1.0.30001717"],\
+          ["fraction.js", "npm:4.3.7"],\
+          ["normalize-range", "npm:0.1.2"],\
+          ["picocolors", "npm:1.1.1"],\
+          ["postcss", "npm:8.5.3"],\
+          ["postcss-value-parser", "npm:4.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/postcss",\
+          "postcss"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["aws-sign2", [\
       ["npm:0.7.0", {\
         "packageLocation": "../../../../../.yarn/berry/cache/aws-sign2-npm-0.7.0-656c6cb84d-10c0.zip/node_modules/aws-sign2/",\
@@ -4818,6 +4848,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["fraction.js", [\
+      ["npm:4.3.7", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/fraction.js-npm-4.3.7-c2c7e95a8e-10c0.zip/node_modules/fraction.js/",\
+        "packageDependencies": [\
+          ["fraction.js", "npm:4.3.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["fresh", [\
       ["npm:2.0.0", {\
         "packageLocation": "../../../../../.yarn/berry/cache/fresh-npm-2.0.0-b0c1795dff-10c0.zip/node_modules/fresh/",\
@@ -4893,6 +4932,7 @@ const RAW_RUNTIME_STATE =
           ["@vue/eslint-config-typescript", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:14.5.0"],\
           ["@vue/test-utils", "npm:2.4.6"],\
           ["@vue/tsconfig", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:0.7.0"],\
+          ["autoprefixer", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:10.4.21"],\
           ["axios", "npm:1.9.0"],\
           ["cypress", "npm:14.3.3"],\
           ["eslint", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:9.26.0"],\
@@ -4905,6 +4945,7 @@ const RAW_RUNTIME_STATE =
           ["npm-run-all2", "npm:7.0.2"],\
           ["oxlint", "npm:0.16.10"],\
           ["pinia", "virtual:9038c60e058e15c91f91da4765a6b51ef7281ba3c24b5113b40506a49dc6969bb8bb51c72f2ce54321059a70eb30ddc82c39973c463c178a5a1b68fd4bf6e237#npm:3.0.2"],\
+          ["postcss", "npm:8.5.3"],\
           ["prettier", "npm:3.5.3"],\
           ["start-server-and-test", "npm:2.0.11"],\
           ["tailwindcss", "npm:4.1.6"],\
@@ -6434,6 +6475,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["normalize-range", [\
+      ["npm:0.1.2", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/normalize-range-npm-0.1.2-bec5e259e2-10c0.zip/node_modules/normalize-range/",\
+        "packageDependencies": [\
+          ["normalize-range", "npm:0.1.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["npm-normalize-package-bin", [\
       ["npm:4.0.0", {\
         "packageLocation": "../../../../../.yarn/berry/cache/npm-normalize-package-bin-npm-4.0.0-d2d7e5e821-10c0.zip/node_modules/npm-normalize-package-bin/",\
@@ -6891,6 +6941,15 @@ const RAW_RUNTIME_STATE =
           ["cssesc", "npm:3.0.0"],\
           ["postcss-selector-parser", "npm:6.1.2"],\
           ["util-deprecate", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["postcss-value-parser", [\
+      ["npm:4.2.0", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/postcss-value-parser-npm-4.2.0-3cef602a6a-10c0.zip/node_modules/postcss-value-parser/",\
+        "packageDependencies": [\
+          ["postcss-value-parser", "npm:4.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\

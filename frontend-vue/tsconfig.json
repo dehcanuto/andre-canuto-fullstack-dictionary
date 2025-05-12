@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
+    "lib": ["DOM", "ES2015"],
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
