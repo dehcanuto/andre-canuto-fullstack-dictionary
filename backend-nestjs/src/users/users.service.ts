@@ -7,13 +7,8 @@ import { User, UserDocument } from './schemas/user.schema';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  // TODO: Provisório
-  async findAll(): Promise<User | null> {
-    return this.userModel.find().lean();
-  }
-
-  async findOne(username: string): Promise<User | null> {
-    return this.userModel.findOne({ username }).lean();
+  async findOne(email: string): Promise<User | null> {
+    return this.userModel.findOne({ email }).lean();
   }
 
   async create(user: Partial<User>): Promise<User> {
