@@ -7,6 +7,10 @@
       <input v-model="password" type="password" placeholder="Senha" class="w-full p-2 border rounded" required />
       <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Cadastrar</button>
       <p v-if="error" class="text-red-500 text-sm text-center">{{ error }}</p>
+      <p class="text-sm text-center">
+        Já tem uma conta?
+        <router-link to="/signin" class="text-blue-600 hover:underline">Entrar</router-link>
+      </p>
     </form>
   </div>
 </template>
