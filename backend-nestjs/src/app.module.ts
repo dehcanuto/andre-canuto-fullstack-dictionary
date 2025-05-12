@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { EntriesModule } from './entries/entries.module';
 import { HistoryModule } from './history/history.module';
+import { FavoriteModule } from './favorite/favorite.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { HistoryModule } from './history/history.module';
     AuthModule,
     EntriesModule,
     HistoryModule,
+    FavoriteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
