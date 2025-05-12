@@ -11,9 +11,7 @@ import { FavoriteModule } from './favorite/favorite.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://admin:admin@mongodb:27017/nestjs-auth', {
-      authSource: 'admin',
-    }),  
+    MongooseModule.forRoot('mongodb+srv://andrecanutoc:Od0SkIjtXWJ8sJWQ@cluster0.hfpqbqz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),  
     UsersModule,
     AuthModule,
     EntriesModule,
