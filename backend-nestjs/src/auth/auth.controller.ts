@@ -2,6 +2,7 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { ApiTags, ApiBody } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -16,14 +17,14 @@ export class AuthController {
       password: { type: 'string' },
     },
   }})
-  async login(@Body() body: AuthDto) {
+  async signin(@Body() body: AuthDto) {
     const user = await this.authService.validateUser(body.email, body.password);
     if (!user) throw new Error('Invalid credentials');
-    return this.authService.login(user);
+    return this.authService.signin(user);
   }
 
   @Post('signup')
-  async register(@Body() body: AuthDto) {
-    return this.authService.register(body);
+  async signup(@Body() body: CreateUserDto) {
+    return this.authService.signup(body);
   }
 }

@@ -3,9 +3,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { EntriesService } from './entries.service';
 import { Entry, EntrySchema } from './schemas/entry.schema';
 import { EntriesController } from './entries.controller';
+import { FavoriteModule } from 'src/favorite/favorite.module';
 
 @Module({
   imports: [
+    FavoriteModule,
     MongooseModule.forFeature([{ name: Entry.name, schema: EntrySchema }]),
   ],
   controllers: [EntriesController],

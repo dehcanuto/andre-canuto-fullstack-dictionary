@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { CreateUserDto } from '../users/dto/create-user.dto';
+import { UserDocument } from 'src/users/schemas/user.schema';
 
 @Injectable()
 export class AuthService {
@@ -19,16 +21,29 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
+  async signin(user: any) {
     const payload = { email: user.email, sub: user._id };
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
-  async register(dto: { email: string; password: string }) {
-    const hash = await bcrypt.hash(dto.password, 10);
-    const user = await this.usersService.create({ ...dto, password: hash });
-    return this.login(user);
+  async signup(dto: CreateUserDto) {
+    const existingUser: UserDocument = await this.usersService.findOne(dto.email);
+    if (existingUser) {
+      throw new ConflictException('Email já cadastrado');
+    }
+
+    const hashedPassword = await bcrypt.hash(dto.password, 10);
+    const user: UserDocument = await this.usersService.create({
+      ...dto,
+      password: hashedPassword,
+    });
+
+    return {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    };
   }
 }

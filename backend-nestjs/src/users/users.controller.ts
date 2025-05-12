@@ -11,25 +11,15 @@ import { ApiBearerAuth, ApiTags, ApiBody } from '@nestjs/swagger';
 import { UserDocument } from './schemas/user.schema';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
-import { EntriesService } from 'src/entries/entries.service';
+import { FavoriteService } from '../favorite/favorite.service';
 
 @ApiTags('Users')
 @Controller('user')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
-    private readonly entriesService: EntriesService
+    private readonly favoriteService: FavoriteService
   ) {}
-
-  @Post('create')
-  async create(@Body() body: { name: string; email: string; password: string }) {
-    const user: UserDocument = await this.usersService.create(body);
-    return {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-    };
-  }
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
@@ -57,6 +47,6 @@ export class UsersController {
   @ApiBearerAuth()
   @Get('me/favorites')
   async getFavorites(@Request() req) {
-    await this.entriesService.getAllFavorites(req.user.userId);
+    await this.favoriteService.getAllFavorites(req.user.userId);
   }
 }
