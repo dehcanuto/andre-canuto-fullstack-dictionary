@@ -26,7 +26,13 @@ export class AuthController {
   async signin(@Body() body: AuthDto) {
     const user = await this.authService.validateUser(body.email, body.password);
     if (!user) throw new Error('Invalid credentials');
-    return this.authService.signin(user);
+
+    const token = await this.authService.signin(user);
+    return {
+      id: user._id.toString(),
+      name: user.name,
+      token: `Bearer ${token.access_token}`,
+    };
   }
 
   @Post('signup')

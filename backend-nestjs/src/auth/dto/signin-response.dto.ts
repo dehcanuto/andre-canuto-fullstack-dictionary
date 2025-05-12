@@ -1,12 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class SigninResponseDto {
-  @ApiProperty()
+  @ApiProperty({ example: 'f3a10cec013ab2c1380acef' })
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'User 1' })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Bearer JWT.Token' })
   token: string;
 }
