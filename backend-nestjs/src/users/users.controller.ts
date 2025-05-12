@@ -47,6 +47,7 @@ export class UsersController {
   @ApiBearerAuth()
   @Get('me/favorites')
   async getFavorites(@Request() req) {
-    await this.favoriteService.getAllFavorites(req.user.userId);
+    const response = await this.favoriteService.getAllFavorites(req.user.userId);
+    return response
   }
 }

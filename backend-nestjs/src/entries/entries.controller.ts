@@ -51,13 +51,15 @@ export class EntriesController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   async addFavorite(@Param('word') word: string, @Req() req) {
-    await this.favoriteService.addToFavorites(req.user.userId, word);
+    const response = await this.favoriteService.addToFavorites(req.user.userId, word);
+    return response;
   }
 
   @Delete(':word/unfavorite')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   async unfavorite(@Param('word') word: string, @Req() req) {
-    return this.favoriteService.removeFromFavorites(req.user.userId, word);
+    const response = await this.favoriteService.removeFromFavorites(req.user.userId, word);
+    return response;
   }
 }
