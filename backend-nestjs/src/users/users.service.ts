@@ -8,8 +8,6 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async findOne(email: string): Promise<User | null> {
-    const res = await this.userModel.find().lean();
-    console.log('findall', res);
     return this.userModel.findOne({ email }).lean();
   }
 

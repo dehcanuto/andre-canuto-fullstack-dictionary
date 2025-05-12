@@ -10,14 +10,29 @@ export class FavoriteService {
     ) {}
 
     async getAllFavorites(userId: string) {
-        return { message: `Busca todos os favoritos do ${userId}` };
+        return this.favoriteModel
+            .find({ user: userId })
+            .select('word')
+            .exec();
     }
 
     async addToFavorites(userId: string, word: string) {
-        return { message: `Palavra "${word}" adicionada no favoritos de ${userId}` };
+        const exists = await this.favoriteModel.findOne({ user: userId, word });
+        if (exists) {
+            return { message: "Error message" }
+        }
+
+        const favorite = new this.favoriteModel({ word, user: userId });
+        return favorite.save();
     }
 
     async removeFromFavorites(userId: string, word: string) {
-        return { message: `Palavra "${word}" removida do favoritos de ${userId}` };
+        const result = await this.favoriteModel.findOneAndDelete({ user: userId, word });
+
+        if (!result) {
+            return { message: "Error message" }
+        }
+
+        return { message: `Palavra "${word}" removida com sucesso dos favoritos.` };
     }
 }

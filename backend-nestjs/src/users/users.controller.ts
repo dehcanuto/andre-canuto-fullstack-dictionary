@@ -25,8 +25,6 @@ export class UsersController {
   @ApiBearerAuth()
   @Get('me')
   async getProfile(@Request() req) {
-    // console.log('Get req', req);
-    console.log('Get me', req.user);
     const user: UserDocument = await this.usersService.findOne(req.user.email);
     if (!user) {
       return { message: 'User not found' };

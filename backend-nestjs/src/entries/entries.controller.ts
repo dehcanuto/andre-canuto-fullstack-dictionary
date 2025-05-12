@@ -30,10 +30,19 @@ export class EntriesController {
     return this.entriesService.searchEntries(search, Number(limit), Number(page));
   }
 
+  @Get('import')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  async importEntries() {
+    const response = await this.entriesService.importWords();
+    return response;
+  }
+
   @Get(':word')
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   async getEntry(@Param('word') word: string, @Req() req) {
-    const entry = await this.entriesService.getEntry(word);
+    const entry = await this.entriesService.getEntryWord(word);
     await this.entriesService.addToHistory(req.user.userId, word);
     return entry;
   }

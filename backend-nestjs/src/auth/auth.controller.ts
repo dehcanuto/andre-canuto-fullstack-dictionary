@@ -15,8 +15,8 @@ export class AuthController {
   @ApiBody({ schema: {
     type: 'object',
     properties: {
-      email: { type: 'string' },
-      password: { type: 'string' },
+      email: { type: 'string', default: 'user@teste.com' },
+      password: { type: 'string', default: '1234' },
     },
   }})
   @ApiOkResponse({

@@ -5,11 +5,8 @@ export type EntryDocument = Entry & Document;
 
 @Schema()
 export class Entry {
-  @Prop()
+  @Prop({ required: true, unique: true })
   word: string;
-
-  @Prop()
-  definition: string;
 }
 
 export const EntrySchema = SchemaFactory.createForClass(Entry);
