@@ -16,15 +16,18 @@ export function useFavorites() {
   };
 
   const handleAddOrRemoveFavorite = async (word: string) => {
-    console.log(word, isFavorite(word))
-    !isFavorite(word) ? addFavorite(word) : removeFavorite(word);
-  }
+    if (!isFavorite(word)) {
+      await addFavorite(word);
+    } else {
+      await removeFavorite(word);
+    }
+  };
 
   const addFavorite = async (word: string) => {
     try {
       const response = await api.post(`/entries/en/${word}/favorite`);
       if (response.status === 200) {
-        favorites.value.push(word);
+        favorites.value = [...favorites.value, word];
       }
     } catch (error) {
       console.error('Erro ao adicionar favorito:', error);
@@ -43,7 +46,6 @@ export function useFavorites() {
   };
 
   const isFavorite = (word: string) => {
-    console.log('isFavorite', favorites.value, word)
     return favorites.value.includes(word);
   };
 
