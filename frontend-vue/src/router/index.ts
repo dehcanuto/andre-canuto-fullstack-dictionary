@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { isAuthenticated } from '../services/auth';
+import { useAuthStore } from '@/stores/authStore'
 import SignIn from '../views/SignIn.vue'
 import SignUp from '../views/SignUp.vue'
 import HomeView from '../views/HomeView.vue'
@@ -20,7 +20,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !isAuthenticated()) {
+  const authStore = useAuthStore()
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    console.log('nao autenticado')
     next('/signin');
   } else {
     next();
