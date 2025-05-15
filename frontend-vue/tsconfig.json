@@ -2,10 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["DOM", "ES2015"],
+    "lib": ["ES2017", "DOM"],
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
+    "composite": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "isolatedModules": true,
