@@ -1,7 +1,9 @@
 import { ref } from 'vue';
+import { createSharedComposable } from "@vueuse/core"
+
 import api from '@/services/api';
 
-export function useFavorites() {
+export const useFavorites = createSharedComposable(() => {
   const favorites = ref<string[]>([]);
 
   const fetchFavorites = async () => {
@@ -57,4 +59,4 @@ export function useFavorites() {
     fetchFavorites,
     handleAddOrRemoveFavorite,
   };
-}
+})

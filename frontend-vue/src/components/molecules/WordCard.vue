@@ -1,8 +1,8 @@
 <template>
-  <div v-if="!loading" class="">
-    <div class="relative border bg-purple-100 text-center py-8">
+  <div v-if="!loading" class="p-4 bg-white shadow rounded-xl">
+    <div class="relative h-46 py-8 bg-purple-100 text-center border border-purple-200 rounded-lg">
       <div
-        class="absolute top-2 right-2 text-xl"
+        class="absolute top-4 right-4 text-xl"
         :class="{ 'text-red-500': isFavorite(entry?.word) }"
         @click="handleAddOrRemoveFavorite(entry?.word)"
       >
@@ -23,8 +23,8 @@
       </ul>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-      <button class="border px-4 py-1">Voltar</button>
-      <button class="border px-4 py-1">Próximo</button>
+      <base-button label="Voltar"></base-button>
+      <base-button label="Próximo"></base-button>
     </div>
   </div>
   <div v-else class="animate-pulse">
@@ -53,8 +53,9 @@ import { useFavorites } from '@/composables/useFavorites'
 import { type DictionaryEntry } from '@models/dictionary'
 import IconFavorite from '@icons/IconFavorite.vue'
 import AudioPlayer from './AudioPlayer.vue'
+import BaseButton from '../atoms/BaseButton.vue'
 
 const { isFavorite, handleAddOrRemoveFavorite } = useFavorites();
 
-const props = defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
+defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
 </script>
