@@ -12,13 +12,15 @@ import { UserDocument } from './schemas/user.schema';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { FavoriteService } from '../favorite/favorite.service';
+import { HistoryService } from '../history/history.service';
 
 @ApiTags('Users')
 @Controller('user')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
-    private readonly favoriteService: FavoriteService
+    private readonly favoriteService: FavoriteService,
+    private readonly historyService: HistoryService
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -40,7 +42,8 @@ export class UsersController {
   @ApiBearerAuth()
   @Get('me/history')
   async getHistory(@Request() req) {
-
+    const response = await this.historyService.getUserHistory(req.user.userId);
+    return response
   }
 
   @UseGuards(JwtAuthGuard)
