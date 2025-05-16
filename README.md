@@ -42,7 +42,7 @@ Com o docker rodando, utilize a rota [http://localhost:3000/entries/en/import](h
 ### Atividades
 
 - [x] Como usuário, devo ser capaz de realizar login com usuário e senha
-- [ ] Como usuário, devo ser capaz de visualizar uma lista de palavras com rolagem infinita
+- [x] Como usuário, devo ser capaz de visualizar uma lista de palavras com rolagem infinita
 - [x] Como usuário, devo ser capaz de visualizar uma palavra, significados e a fonética
 - [x] Como usuário, devo ser capaz de salvar a palavra como favorito
 - [x] Como usuário, devo ser capaz de remover a palavra como favorito
@@ -75,7 +75,7 @@ O projeto tem suporte de swagger para acompanhamento dos endpoints [http://local
 - [x] Você deve criar um script para baixar a lista de palavras do repositório e importar estas palavras para o banco de dados. A Free Dictionary API não possui endpoint com a lista de palavras. Para criar este endpoint será necessário alimentar o seu banco de dados com o [arquivo existente dentro do projeto no Github](https://github.com/meetDeveloper/freeDictionaryAPI/tree/master/meta/wordList).
 - [x] Descrever a documentação da API utilizando o conceito de Open API 3.0;
 - [ ] Escrever Unit Tests para os endpoints da API;
-- [x] Implementar paginação com cursores ao inves de usar page e limit . Ao realizar este diferencial, o retorno dos endpoints deve possuir a seguinte estrutura:
+- [ ] Implementar paginação com cursores ao inves de usar page e limit . Ao realizar este diferencial, o retorno dos endpoints deve possuir a seguinte estrutura:
 ```json
 {
     "results": [

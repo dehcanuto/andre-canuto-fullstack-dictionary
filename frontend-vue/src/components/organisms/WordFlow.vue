@@ -7,7 +7,7 @@
       <div class="w-full md:w-2/3">
         <WordTabs :tabs="tabList">
           <template #word-list>
-            <words-list :items="words" @select="loadDefinition"></words-list>
+            <words-list :items="words" @select="loadDefinition" @loadMore="handleMoreWords"></words-list>
           </template>
           <template #history>
             <words-list :items="history" @select="loadDefinition"></words-list>
@@ -23,19 +23,21 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { fetchWordDefinition, fetchWords } from '@/services/dictionaryService'
+import { fetchWordDefinition } from '@/services/dictionaryService'
 import { type DictionaryEntry } from '@/models/dictionary'
+
+import { useEntries } from '@/composables/useEntries'
 import { useHistory } from '@/composables/useHistory'
 import { useFavorites } from '@/composables/useFavorites'
+
 import WordTabs from '@components/molecules/WordTabs.vue'
 import WordsList from '@components/molecules/WordsList.vue'
 import WordCard from '@components/molecules/WordCard.vue'
 
+const { words, fetchEntries, resetEntries, loading: entriesLoading } = useEntries()
 const { history, fetchHistory } = useHistory()
 const { favorites, fetchFavorites } = useFavorites()
 
-const loading = ref<boolean>(true)
-const words = ref<string[]>([])
 const word = ref('hello')
 const entry = ref<DictionaryEntry | null>(null)
 const error = ref('')
@@ -48,26 +50,23 @@ const tabList = [
 
 const init = async () => {
   void loadDefinition(word.value)
-  void listWords()
+  resetEntries()
+  await fetchEntries()
   await fetchHistory()
   await fetchFavorites()
 }
 
-const loadDefinition = async (word: string) => {
+const loadDefinition = async (wordToLoad: string) => {
   try {
-    loading.value = true
     error.value = ''
-    entry.value = await fetchWordDefinition(word)
+    entry.value = await fetchWordDefinition(wordToLoad)
   } catch (err: any) {
     error.value = err.message
-  } finally {
-    loading.value = false
   }
 }
 
-const listWords = async () => {
-  const response = await fetchWords()
-  words.value = response.results
+const handleMoreWords = async () => {
+  await fetchEntries()
 }
 
 onMounted(() => {

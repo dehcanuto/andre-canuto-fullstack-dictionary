@@ -24,7 +24,7 @@ export class EntriesController {
   @Get()
   async search(
     @Query('search') search: string,
-    @Query('limit') limit = 30,
+    @Query('limit') limit = 40,
     @Query('page') page = 1,
   ) {
     return this.entriesService.searchEntries(search, Number(limit), Number(page));

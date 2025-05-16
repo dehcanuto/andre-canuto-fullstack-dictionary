@@ -1,23 +1,25 @@
 <template>
   <div v-if="!loading" class="p-4 bg-white shadow rounded-xl">
-    <div class="relative h-46 py-8 bg-purple-100 text-center border border-purple-200 rounded-lg">
+    <div class="flex items-center justify-center relative h-46 py-8 bg-purple-100 border border-purple-200 rounded-lg">
       <div
-        class="absolute top-4 right-4 text-xl"
+        class="absolute top-4 right-4 text-xl text-slate-400"
         :class="{ 'text-red-500': isFavorite(entry?.word) }"
         @click="handleAddOrRemoveFavorite(entry?.word)"
       >
         <icon-favorite></icon-favorite>
       </div>
-      <h1 class="text-2xl font-semibold">{{ entry?.word }}</h1>
-      <p class="text-xl">{{ entry?.phonetic }}</p>
+      <div class="text-center">
+        <h1 class="text-2xl font-semibold text-red-400">{{ entry?.word }}</h1>
+        <p class="text-xl">{{ entry?.phonetic }}</p>
+      </div>
     </div>
     <audio-player v-if="entry?.phonetics.length" :audio="entry?.phonetics[0].audio"></audio-player>
     <div class="mt-4">
-      <h2 class="text-xl font-bold">Meanings</h2>
+      <h2 class="text-xl font-bold mb-4">Meanings</h2>
       <ul
         v-for="(meaning, index) in entry?.meanings"
         :key="index"
-        class="flex flex-col text-sm mt-1 gap-3"
+        class="flex flex-col text-sm text-slate-500 mt-1 gap-3"
       >
         <li v-for="(definition, index) in meaning.definitions">- {{ definition.definition }}</li>
       </ul>
