@@ -34,14 +34,19 @@ import WordTabs from '@components/molecules/WordTabs.vue'
 import WordsList from '@components/molecules/WordsList.vue'
 import WordCard from '@components/molecules/WordCard.vue'
 
-const { words, fetchEntries, resetEntries, loading: entriesLoading } = useEntries()
+const {
+  words,
+  fetchEntries,
+  resetEntries,
+  loadDefinition,
+  loading: entriesLoading,
+  entry,
+  error
+} = useEntries()
 const { history, fetchHistory } = useHistory()
 const { favorites, fetchFavorites } = useFavorites()
 
 const word = ref('hello')
-const entry = ref<DictionaryEntry | null>(null)
-const error = ref('')
-
 const tabList = [
   { name: 'word-list', label: 'Word List' },
   { name: 'history', label: 'History' },
@@ -54,15 +59,6 @@ const init = async () => {
   await fetchEntries()
   await fetchHistory()
   await fetchFavorites()
-}
-
-const loadDefinition = async (wordToLoad: string) => {
-  try {
-    error.value = ''
-    entry.value = await fetchWordDefinition(wordToLoad)
-  } catch (err: any) {
-    error.value = err.message
-  }
 }
 
 const handleMoreWords = async () => {
