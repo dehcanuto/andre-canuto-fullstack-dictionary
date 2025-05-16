@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { createSharedComposable } from '@vueuse/core'
+import { useToast } from 'vue-toastification'
 
 import api from '@/services/api'
 
@@ -9,6 +10,7 @@ import api from '@/services/api'
  * @returns An object with the search history list and a function to fetch it from the server.
  */
 export const useHistory = createSharedComposable(() => {
+  const toast = useToast()
   const history = ref<string[]>([])
 
   /**
@@ -21,7 +23,7 @@ export const useHistory = createSharedComposable(() => {
         history.value = response.data
       }
     } catch (error) {
-      console.error('Erro ao listar favoritos:', error)
+      toast.error('Erro ao listar historico')
     }
   }
 

@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { createSharedComposable } from '@vueuse/core'
+import { useToast } from 'vue-toastification'
 import api from '@/services/api'
 import { fetchWordDefinition } from '@/services/dictionaryService'
 import type { DictionaryEntry } from '@/models/dictionary'
@@ -11,6 +12,8 @@ import type { DictionaryEntry } from '@/models/dictionary'
  *          error message, and functions to fetch/reset entries or load word definitions.
  */
 export const useEntries = createSharedComposable(() => {
+  const toast = useToast()
+
   const words = ref<DictionaryEntry[]>([])
   const page = ref(1)
   const limit = 42
@@ -41,7 +44,7 @@ export const useEntries = createSharedComposable(() => {
       words.value.push(...newWords)
       page.value += 1
     } catch (err) {
-      console.error('Erro ao buscar palavras:', err)
+      toast.error('Erro ao buscar palavras')
     } finally {
       loading.value = false
     }
@@ -68,11 +71,28 @@ export const useEntries = createSharedComposable(() => {
       entry.value = await fetchWordDefinition(wordToLoad)
     } catch (err: any) {
       error.value = err.message
+      toast.error(err.message)
     } finally {
       loading.value = false
     }
   }
 
+  /**
+   * Navigates to the previous or next word in the list of available words.
+   *
+   * This function finds the current word's index (`entry.value`) in the `words` array.
+   * Based on the provided `direction`, it calculates the next word's index and,
+   * if the next word exists, loads its definition using `loadDefinition`.
+   *
+   * @param direction - The direction to navigate:
+   *   - `'prev'`: go to the previous word
+   *   - `'next'`: go to the next word
+   *
+   * @remarks
+   * - Navigation only happens if `entry.value` is defined.
+   * - If the current word is not found in `words`, the function returns silently.
+   * - If the resulting index is out of bounds, no action is taken.
+   */
   const goToWord = (direction: 'prev' | 'next') => {
     if (!entry.value) return
 

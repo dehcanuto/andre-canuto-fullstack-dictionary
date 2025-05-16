@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import { createSharedComposable } from '@vueuse/core'
+import { useToast } from 'vue-toastification'
 
 import api from '@/services/api'
 
@@ -9,6 +10,7 @@ import api from '@/services/api'
  * @returns An object with the list of favorite words and functions to add, remove, toggle, and fetch them.
  */
 export const useFavorites = createSharedComposable(() => {
+  const toast = useToast()
   const favorites = ref<string[]>([])
 
   /**
@@ -21,7 +23,7 @@ export const useFavorites = createSharedComposable(() => {
         favorites.value = response.data
       }
     } catch (error) {
-      console.error('Erro ao listar favoritos:', error)
+      toast.error('Erro ao listar favoritos')
     }
   }
 
@@ -50,7 +52,7 @@ export const useFavorites = createSharedComposable(() => {
         favorites.value = [...favorites.value, word]
       }
     } catch (error) {
-      console.error('Erro ao adicionar favorito:', error)
+      toast.error('Erro ao adicionar favorito')
     }
   }
 
@@ -66,7 +68,7 @@ export const useFavorites = createSharedComposable(() => {
         favorites.value = favorites.value.filter((fav) => fav !== word)
       }
     } catch (error) {
-      console.error('Erro ao remover favorito:', error)
+      toast.error('Erro ao remover favorito')
     }
   }
 

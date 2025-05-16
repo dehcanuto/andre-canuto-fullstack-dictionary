@@ -10,6 +10,20 @@ Nesse desafio você deverá desenvolver um aplicativo para listar palavras em in
 
 ### 🚀 Get Started!
 
+#### 1. Instale as dependencias
+
+Dentro da pasta `backend-nestjs` rode o seguinte comando:
+
+```bash
+yarn install
+```
+
+Dentro da pasta `frontend-vue` rode o seguinte comando:
+
+```bash
+yarn install
+```
+
 #### 1. Docker
 
 Rode o docker que ele irá iniciar todo a aplicação.

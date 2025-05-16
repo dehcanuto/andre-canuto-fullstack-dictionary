@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+@import 'vue-toastification/dist/index.css';
+
+.Vue-Toastification__toast.Vue-Toastification__toast--success {
+  background-color: theme('colors.success');
+}
+
+.Vue-Toastification__toast.Vue-Toastification__toast--error {
+  background-color: theme('colors.error');
+}
