@@ -7,7 +7,6 @@ export const useFavorites = createSharedComposable(() => {
   const favorites = ref<string[]>([]);
 
   const fetchFavorites = async () => {
-
     try {
       const response = await api.get(`/user/me/favorites`);
       if (response.status === 200) {
