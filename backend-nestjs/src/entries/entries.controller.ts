@@ -1,24 +1,26 @@
 import {
-    Controller,
-    Get,
-    Param,
-    Query,
-    Post,
-    Delete,
-    UseGuards,
-    Req,
-  } from '@nestjs/common';
-  import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-  import { EntriesService } from './entries.service';
-  import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+  Controller,
+  Get,
+  Param,
+  Query,
+  Post,
+  Delete,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { EntriesService } from './entries.service';
+import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
 import { FavoriteService } from '../favorite/favorite.service';
+import { HistoryService } from '../history/history.service';
   
 @ApiTags('Entries')
 @Controller('entries/en')
 export class EntriesController {
   constructor(
     private entriesService: EntriesService,
-    private readonly favoriteService: FavoriteService
+    private readonly favoriteService: FavoriteService,
+    private readonly historyService: HistoryService
   ) {}
 
   @Get()
@@ -43,7 +45,7 @@ export class EntriesController {
   @ApiBearerAuth()
   async getEntry(@Param('word') word: string, @Req() req) {
     const entry = await this.entriesService.getEntryWord(word);
-    await this.entriesService.addToHistory(req.user.userId, word);
+    await this.historyService.addToHistory(req.user.userId, word);
     return entry;
   }
 

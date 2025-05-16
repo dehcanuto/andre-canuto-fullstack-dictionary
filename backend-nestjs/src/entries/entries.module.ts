@@ -6,12 +6,14 @@ import { EntriesService } from './entries.service';
 import { Entry, EntrySchema } from './schemas/entry.schema';
 import { EntriesController } from './entries.controller';
 import { FavoriteModule } from '../favorite/favorite.module';
+import { HistoryModule } from '../history/history.module';
 
 
 @Module({
   imports: [
     HttpModule,
     FavoriteModule,
+    HistoryModule,
     MongooseModule.forFeature([{ name: Entry.name, schema: EntrySchema }]),
   ],
   controllers: [EntriesController],
