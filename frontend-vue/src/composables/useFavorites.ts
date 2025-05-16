@@ -1,53 +1,87 @@
-import { ref } from 'vue';
-import api from '@/services/api';
+import { ref } from 'vue'
+import { createSharedComposable } from '@vueuse/core'
+import { useToast } from 'vue-toastification'
 
-export function useFavorites() {
-  const favorites = ref<string[]>([]);
+import api from '@/services/api'
 
+/**
+ * A shared composable for managing the user's favorite words.
+ *
+ * @returns An object with the list of favorite words and functions to add, remove, toggle, and fetch them.
+ */
+export const useFavorites = createSharedComposable(() => {
+  const toast = useToast()
+  const favorites = ref<string[]>([])
+
+  /**
+   * Fetches the list of user's favorite words from the server.
+   */
   const fetchFavorites = async () => {
     try {
-      const response = await api.get(`/user/me/favorites`);
+      const response = await api.get(`/user/me/favorites`)
       if (response.status === 200) {
-        favorites.value = response.data;
+        favorites.value = response.data
       }
     } catch (error) {
-      console.error('Erro ao listar favoritos:', error);
+      toast.error('Erro ao listar favoritos')
     }
-  };
+  }
 
+  /**
+   * Toggles a word's favorite status: adds it if not present, removes it if already favorited.
+   *
+   * @param word - The word to add or remove from favorites.
+   */
   const handleAddOrRemoveFavorite = async (word: string) => {
     if (!isFavorite(word)) {
-      await addFavorite(word);
+      await addFavorite(word)
     } else {
-      await removeFavorite(word);
+      await removeFavorite(word)
     }
-  };
+  }
 
+  /**
+   * Adds a word to the user's favorites.
+   *
+   * @param word - The word to mark as favorite.
+   */
   const addFavorite = async (word: string) => {
     try {
-      const response = await api.post(`/entries/en/${word}/favorite`);
+      const response = await api.post(`/entries/en/${word}/favorite`)
       if (response.status === 200) {
-        favorites.value = [...favorites.value, word];
+        favorites.value = [...favorites.value, word]
       }
     } catch (error) {
-      console.error('Erro ao adicionar favorito:', error);
+      toast.error('Erro ao adicionar favorito')
     }
-  };
+  }
 
+  /**
+   * Removes a word from the user's favorites.
+   *
+   * @param word - The word to remove from favorites.
+   */
   const removeFavorite = async (word: string) => {
     try {
-      const response = await api.delete(`/entries/en/${word}/unfavorite`);
+      const response = await api.delete(`/entries/en/${word}/unfavorite`)
       if (response.status === 200) {
-        favorites.value = favorites.value.filter(fav => fav !== word);
+        favorites.value = favorites.value.filter((fav) => fav !== word)
       }
     } catch (error) {
-      console.error('Erro ao remover favorito:', error);
+      toast.error('Erro ao remover favorito')
     }
-  };
+  }
 
+  /**
+   * Checks if a given word is currently in the user's favorites.
+   *
+   * @param word - The word to check.
+   * @returns `true` if the word is a favorite, otherwise `false`.
+   */
   const isFavorite = (word: string) => {
-    return favorites.value.includes(word);
-  };
+    if (!word) return false
+    return favorites.value.some((fav) => fav.word === word)
+  }
 
   return {
     favorites,
@@ -56,5 +90,5 @@ export function useFavorites() {
     isFavorite,
     fetchFavorites,
     handleAddOrRemoveFavorite,
-  };
-}
+  }
+})

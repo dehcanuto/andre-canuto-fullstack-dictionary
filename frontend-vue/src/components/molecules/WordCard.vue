@@ -1,30 +1,34 @@
 <template>
-  <div v-if="!loading" class="">
-    <div class="relative border bg-purple-100 text-center py-8">
+  <div v-if="!loading" class="p-4 bg-white shadow rounded-xl">
+    <div
+      class="flex items-center justify-center relative h-46 py-8 bg-purple-100 border border-purple-200 rounded-lg"
+    >
       <div
-        class="absolute top-2 right-2 text-xl"
-        :class="{ 'text-red-500': isFavorite(entry?.word) }"
-        @click="handleAddOrRemoveFavorite(entry?.word)"
+        class="absolute top-4 right-4 text-xl cursor-pointer"
+        :class="{ 'text-red-500': isCurrentFavorite, 'text-slate-400': !isCurrentFavorite }"
+        @click="handleFavorite(entry?.word)"
       >
         <icon-favorite></icon-favorite>
       </div>
-      <h1 class="text-2xl font-semibold">{{ entry?.word }}</h1>
-      <p class="text-xl">{{ entry?.phonetic }}</p>
+      <div class="text-center">
+        <h1 class="text-2xl font-semibold text-red-400">{{ entry?.word }}</h1>
+        <p class="text-xl">{{ entry?.phonetic }}</p>
+      </div>
     </div>
-    <audio-player v-if="entry?.phonetics.length" :audio="entry?.phonetics[0].audio"></audio-player>
+    <audio-player v-if="entry?.phonetics?.length" :audio="entry?.phonetics[0].audio"></audio-player>
     <div class="mt-4">
-      <h2 class="text-xl font-bold">Meanings</h2>
+      <h2 class="text-xl font-bold mb-4">Meanings</h2>
       <ul
         v-for="(meaning, index) in entry?.meanings"
         :key="index"
-        class="flex flex-col text-sm mt-1 gap-3"
+        class="flex flex-col text-sm text-slate-500 mt-1 gap-3"
       >
         <li v-for="(definition, index) in meaning.definitions">- {{ definition.definition }}</li>
       </ul>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-      <button class="border px-4 py-1">Voltar</button>
-      <button class="border px-4 py-1">Próximo</button>
+      <base-button label="Voltar" @click="goToWord('prev')"></base-button>
+      <base-button label="Próximo" @click="goToWord('next')"></base-button>
     </div>
   </div>
   <div v-else class="animate-pulse">
@@ -49,12 +53,23 @@
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useFavorites } from '@/composables/useFavorites'
 import { type DictionaryEntry } from '@models/dictionary'
 import IconFavorite from '@icons/IconFavorite.vue'
 import AudioPlayer from './AudioPlayer.vue'
+import BaseButton from '../atoms/BaseButton.vue'
+import { useEntries } from '@/composables/useEntries'
 
-const { isFavorite, handleAddOrRemoveFavorite } = useFavorites();
+const { isFavorite, handleAddOrRemoveFavorite, fetchFavorites } = useFavorites()
+const { goToWord } = useEntries()
 
 const props = defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
+
+const isCurrentFavorite = computed(() => isFavorite(props.entry?.word ?? ''))
+
+const handleFavorite = async (word: string) => {
+  await handleAddOrRemoveFavorite(word)
+  await fetchFavorites()
+}
 </script>

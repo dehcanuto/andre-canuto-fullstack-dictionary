@@ -1,17 +1,21 @@
 <template>
-  <div class="w-full">
-    <div class="flex border-b">
+  <div class="w-full p-4 bg-white shadow rounded-xl">
+    <div class="flex gap-2">
       <button
         v-for="tab in tabs"
         :key="tab.name"
-        class="px-4 py-2 text-gray-400"
-        :class="{ 'bg-gray-300 text-gray-800': activeTab === tab.name }"
+        role="tab"
+        class="px-4 py-2 font-semibold rounded-lg cursor-pointer"
+        :class="{
+          'bg-blue-400 text-white hover:bg-blue-200': activeTab === tab.name,
+          'text-gray-400 border border-gray-300 hover:bg-gray-100': activeTab !== tab.name,
+        }"
         @click="activeTab = tab.name"
       >
         {{ tab.label }}
       </button>
     </div>
-    <div class="mt-4">
+    <div class="bg-slate-100 text-gray-500 rounded-sm mt-4">
       <slot :name="activeTab" />
     </div>
   </div>
@@ -37,6 +41,6 @@ watch(
   () => props.defaultTab,
   (val) => {
     if (val) activeTab.value = val
-  }
+  },
 )
 </script>
