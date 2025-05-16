@@ -3,9 +3,17 @@ import { createSharedComposable } from "@vueuse/core"
 
 import api from '@/services/api';
 
+/**
+ * A shared composable for managing the user's favorite words.
+ *
+ * @returns An object with the list of favorite words and functions to add, remove, toggle, and fetch them.
+ */
 export const useFavorites = createSharedComposable(() => {
   const favorites = ref<string[]>([]);
 
+  /**
+   * Fetches the list of user's favorite words from the server.
+   */
   const fetchFavorites = async () => {
     try {
       const response = await api.get(`/user/me/favorites`);
@@ -17,6 +25,11 @@ export const useFavorites = createSharedComposable(() => {
     }
   };
 
+  /**
+   * Toggles a word's favorite status: adds it if not present, removes it if already favorited.
+   *
+   * @param word - The word to add or remove from favorites.
+   */
   const handleAddOrRemoveFavorite = async (word: string) => {
     if (!isFavorite(word)) {
       await addFavorite(word);
@@ -25,6 +38,11 @@ export const useFavorites = createSharedComposable(() => {
     }
   };
 
+  /**
+   * Adds a word to the user's favorites.
+   *
+   * @param word - The word to mark as favorite.
+   */
   const addFavorite = async (word: string) => {
     try {
       const response = await api.post(`/entries/en/${word}/favorite`);
@@ -36,6 +54,11 @@ export const useFavorites = createSharedComposable(() => {
     }
   };
 
+  /**
+   * Removes a word from the user's favorites.
+   *
+   * @param word - The word to remove from favorites.
+   */
   const removeFavorite = async (word: string) => {
     try {
       const response = await api.delete(`/entries/en/${word}/unfavorite`);
@@ -47,6 +70,12 @@ export const useFavorites = createSharedComposable(() => {
     }
   };
 
+  /**
+   * Checks if a given word is currently in the user's favorites.
+   *
+   * @param word - The word to check.
+   * @returns `true` if the word is a favorite, otherwise `false`.
+   */
   const isFavorite = (word: string) => {
     return favorites.value.includes(word);
   };
