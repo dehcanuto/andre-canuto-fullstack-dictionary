@@ -1,8 +1,9 @@
 <template>
   <div class="container mx-auto min-h-screen">
     <div class="flex flex-col md:flex-row gap-4 mt-4">
+      {{  entriesLoading }}
       <div class="w-full md:w-1/3">
-        <WordCard :entry="entry" :loading="loading"></WordCard>
+        <WordCard :entry="entry" :loading="entriesLoading"></WordCard>
       </div>
       <div class="w-full md:w-2/3">
         <WordTabs :tabs="tabList">

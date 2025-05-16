@@ -25,7 +25,7 @@ export const useEntries = createSharedComposable(() => {
    * Prevents duplicate requests if already loading or if no more entries are available.
    */
   const fetchEntries = async () => {
-    if (loading.value || noMore.value) return
+    if (noMore.value) return
 
     loading.value = true
     try {
@@ -63,10 +63,13 @@ export const useEntries = createSharedComposable(() => {
    */
   const loadDefinition = async (wordToLoad: string) => {
     try {
+      loading.value = true
       error.value = ''
       entry.value = await fetchWordDefinition(wordToLoad)
     } catch (err: any) {
       error.value = err.message
+    } finally {
+      loading.value = false
     }
   }
 
