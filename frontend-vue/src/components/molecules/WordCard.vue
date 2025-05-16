@@ -4,8 +4,8 @@
       class="flex items-center justify-center relative h-46 py-8 bg-purple-100 border border-purple-200 rounded-lg"
     >
       <div
-        class="absolute top-4 right-4 text-xl text-slate-400"
-        :class="{ 'text-red-500': isFavorite(entry?.word) }"
+        class="absolute top-4 right-4 text-xl cursor-pointer"
+        :class="{ 'text-red-500': isCurrentFavorite, 'text-slate-400': !isCurrentFavorite }"
         @click="handleFavorite(entry?.word)"
       >
         <icon-favorite></icon-favorite>
@@ -53,6 +53,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useFavorites } from '@/composables/useFavorites'
 import { type DictionaryEntry } from '@models/dictionary'
 import IconFavorite from '@icons/IconFavorite.vue'
@@ -63,7 +64,9 @@ import { useEntries } from '@/composables/useEntries'
 const { isFavorite, handleAddOrRemoveFavorite, fetchFavorites } = useFavorites()
 const { goToWord } = useEntries()
 
-defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
+const props = defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
+
+const isCurrentFavorite = computed(() => isFavorite(props.entry?.word ?? ''))
 
 const handleFavorite = async (word: string) => {
   await handleAddOrRemoveFavorite(word)

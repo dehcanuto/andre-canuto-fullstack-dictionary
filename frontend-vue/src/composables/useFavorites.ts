@@ -77,7 +77,8 @@ export const useFavorites = createSharedComposable(() => {
    * @returns `true` if the word is a favorite, otherwise `false`.
    */
   const isFavorite = (word: string) => {
-    return favorites.value.includes(word)
+    if (!word) return false
+    return favorites.value.some((fav) => fav.word === word)
   }
 
   return {
