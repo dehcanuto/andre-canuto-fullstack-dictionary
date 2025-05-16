@@ -46,7 +46,7 @@ Com o docker rodando, utilize a rota [http://localhost:3000/entries/en/import](h
 - [x] Como usuário, devo ser capaz de visualizar uma palavra, significados e a fonética
 - [x] Como usuário, devo ser capaz de salvar a palavra como favorito
 - [x] Como usuário, devo ser capaz de remover a palavra como favorito
-- [ ] Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
+- [x] Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
 - [x] Seguir o wireframe para a página de listagem dos dados.
 - [ ] Escrever Unit Tests ou E2E Test. Escolher a melhor abordagem e biblioteca;
 - [x] Configurar Docker no Projeto para facilitar o Deploy da equipe de DevOps;
@@ -67,8 +67,8 @@ O projeto tem suporte de swagger para acompanhamento dos endpoints [http://local
 
 - [x] Como usuário, devo ser capaz de realizar login com usuário e senha
 - [x] Como usuário, devo ser capaz de visualizar a lista de palavras do dicionário
-- [ ] Como usuário, devo ser capaz de guardar no histórico palavras já visualizadas
-- [ ] Como usuário, devo ser capaz de visualizar o histórico de palavras já visualizadas
+- [x] Como usuário, devo ser capaz de guardar no histórico palavras já visualizadas
+- [x] Como usuário, devo ser capaz de visualizar o histórico de palavras já visualizadas
 - [x] Como usuário, deve ser capaz de guardar uma palavra como favorita
 - [x] Como usuário, deve ser capaz de apagar uma palavra favorita
 - [x] Internamente, a API deve fazer proxy da API Free Dictionary, pois assim o front irá acessar somente a sua API

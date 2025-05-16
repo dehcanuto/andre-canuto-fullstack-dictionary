@@ -7,13 +7,13 @@
       <div class="w-full md:w-2/3">
         <WordTabs :tabs="tabList">
           <template #word-list>
-            <words-list :items="words" @select="loadDefinition" @loadMore="handleMoreWords"></words-list>
+            <words-list :items="words" @select="handleLoadDefinition" @loadMore="handleMoreWords"></words-list>
           </template>
           <template #history>
-            <words-list :items="history" @select="loadDefinition"></words-list>
+            <words-list :items="history" @select="handleLoadDefinition"></words-list>
           </template>
           <template #favorites>
-            <words-list :items="favorites" @select="loadDefinition"></words-list>
+            <words-list :items="favorites" @select="handleLoadDefinition"></words-list>
           </template>
         </WordTabs>
       </div>
@@ -23,8 +23,6 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { fetchWordDefinition } from '@/services/dictionaryService'
-import { type DictionaryEntry } from '@/models/dictionary'
 
 import { useEntries } from '@/composables/useEntries'
 import { useHistory } from '@/composables/useHistory'
@@ -63,6 +61,11 @@ const init = async () => {
 
 const handleMoreWords = async () => {
   await fetchEntries()
+}
+
+const handleLoadDefinition = async (word: string) => {
+  await loadDefinition(word)
+  await fetchHistory()
 }
 
 onMounted(() => {

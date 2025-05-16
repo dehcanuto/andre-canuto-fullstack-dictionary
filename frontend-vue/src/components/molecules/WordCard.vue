@@ -4,7 +4,7 @@
       <div
         class="absolute top-4 right-4 text-xl text-slate-400"
         :class="{ 'text-red-500': isFavorite(entry?.word) }"
-        @click="handleAddOrRemoveFavorite(entry?.word)"
+        @click="handleFavorite(entry?.word)"
       >
         <icon-favorite></icon-favorite>
       </div>
@@ -57,7 +57,12 @@ import IconFavorite from '@icons/IconFavorite.vue'
 import AudioPlayer from './AudioPlayer.vue'
 import BaseButton from '../atoms/BaseButton.vue'
 
-const { isFavorite, handleAddOrRemoveFavorite } = useFavorites();
+const { isFavorite, handleAddOrRemoveFavorite, fetchFavorites } = useFavorites();
 
 defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
+
+const handleFavorite = async (word: string) => {
+  await handleAddOrRemoveFavorite(word)
+  await fetchFavorites()
+}
 </script>
