@@ -7,7 +7,11 @@
       <div class="w-full md:w-2/3">
         <WordTabs :tabs="tabList">
           <template #word-list>
-            <words-list :items="words" @select="handleLoadDefinition" @loadMore="handleMoreWords"></words-list>
+            <words-list
+              :items="words"
+              @select="handleLoadDefinition"
+              @loadMore="handleMoreWords"
+            ></words-list>
           </template>
           <template #history>
             <words-list :items="history" @select="handleLoadDefinition"></words-list>
@@ -39,7 +43,7 @@ const {
   loadDefinition,
   loading: entriesLoading,
   entry,
-  error
+  error,
 } = useEntries()
 const { history, fetchHistory } = useHistory()
 const { favorites, fetchFavorites } = useFavorites()

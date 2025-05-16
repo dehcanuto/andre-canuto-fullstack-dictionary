@@ -1,6 +1,8 @@
 <template>
   <div v-if="!loading" class="p-4 bg-white shadow rounded-xl">
-    <div class="flex items-center justify-center relative h-46 py-8 bg-purple-100 border border-purple-200 rounded-lg">
+    <div
+      class="flex items-center justify-center relative h-46 py-8 bg-purple-100 border border-purple-200 rounded-lg"
+    >
       <div
         class="absolute top-4 right-4 text-xl text-slate-400"
         :class="{ 'text-red-500': isFavorite(entry?.word) }"
@@ -13,7 +15,7 @@
         <p class="text-xl">{{ entry?.phonetic }}</p>
       </div>
     </div>
-    <audio-player v-if="entry?.phonetics.length" :audio="entry?.phonetics[0].audio"></audio-player>
+    <audio-player v-if="entry?.phonetics?.length" :audio="entry?.phonetics[0].audio"></audio-player>
     <div class="mt-4">
       <h2 class="text-xl font-bold mb-4">Meanings</h2>
       <ul
@@ -57,7 +59,7 @@ import IconFavorite from '@icons/IconFavorite.vue'
 import AudioPlayer from './AudioPlayer.vue'
 import BaseButton from '../atoms/BaseButton.vue'
 
-const { isFavorite, handleAddOrRemoveFavorite, fetchFavorites } = useFavorites();
+const { isFavorite, handleAddOrRemoveFavorite, fetchFavorites } = useFavorites()
 
 defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
 

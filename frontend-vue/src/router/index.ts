@@ -24,10 +24,10 @@ router.beforeEach((to, from, next) => {
 
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     console.log('nao autenticado')
-    next('/signin');
+    next('/signin')
   } else {
-    next();
+    next()
   }
-});
+})
 
 export default router

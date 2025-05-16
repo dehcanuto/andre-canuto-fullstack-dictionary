@@ -4,6 +4,7 @@
       <button
         v-for="tab in tabs"
         :key="tab.name"
+        role="tab"
         class="px-4 py-2 font-semibold rounded-lg cursor-pointer"
         :class="{
           'bg-blue-400 text-white hover:bg-blue-200': activeTab === tab.name,
@@ -40,6 +41,6 @@ watch(
   () => props.defaultTab,
   (val) => {
     if (val) activeTab.value = val
-  }
+  },
 )
 </script>

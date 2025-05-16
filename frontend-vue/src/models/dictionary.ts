@@ -1,8 +1,8 @@
 export interface ApiResponse {
-  results: string[],
-  totalDocs: number,
-  page: number,
-  totalPages: number,
+  results: string[]
+  totalDocs: number
+  page: number
+  totalPages: number
   hasNext: boolean
   hasPrev: boolean
 }

@@ -4,6 +4,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { formatUserName } from "@/misc/format"
+import { formatUserName } from '@/misc/format'
 defineProps<{ name: string }>()
 </script>

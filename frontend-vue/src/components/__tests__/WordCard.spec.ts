@@ -1,18 +1,23 @@
 import { describe, it, expect } from 'vitest'
-
 import { mount } from '@vue/test-utils'
-import WordCard from '../WordCard.vue'
+import WordCard from '../molecules/WordCard.vue'
 
-describe('WordCard', () => {
-  it('renders properly', () => {
+describe('WordCard.vue', () => {
+  it('renders the word prop', () => {
     const wrapper = mount(WordCard, {
       props: {
         entry: {
-          word: 'today',
-          phonetic: '/təˈdeɪ/',
-        },
-      },
+          word: "hello",
+          meanings: [{
+            definitions: [
+              { definition: "\"Hello!\" or an equivalent greeting." }
+            ]
+          }]
+        }
+      }
     })
-    expect(wrapper.text()).toContain('today')
+
+    expect(wrapper.text()).toContain('hello')
+    expect(wrapper.text()).toContain('\"Hello!\" or an equivalent greeting.')
   })
 })
