@@ -7,10 +7,12 @@ export const useFavorites = createSharedComposable(() => {
   const favorites = ref<string[]>([]);
 
   const fetchFavorites = async () => {
+
     try {
       const response = await api.get(`/user/me/favorites`);
       if (response.status === 200) {
         favorites.value = response.data;
+        console.log('como vem', favorites.value)
       }
     } catch (error) {
       console.error('Erro ao listar favoritos:', error);
@@ -18,6 +20,7 @@ export const useFavorites = createSharedComposable(() => {
   };
 
   const handleAddOrRemoveFavorite = async (word: string) => {
+    console.log('como vai', word)
     if (!isFavorite(word)) {
       await addFavorite(word);
     } else {

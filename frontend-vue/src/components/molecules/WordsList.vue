@@ -6,7 +6,7 @@
         v-for="(word, index) in items"
         :key="index"
         class="bg-white border border-slate-300 py-2 cursor-pointer rounded hover:bg-slate-100"
-        @click="emit('select', word)"
+        @click="emit('select', (typeof word === 'string' ? word : word.word))"
       >
         {{ word.word ?? word }}
       </button>
