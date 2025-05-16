@@ -16,7 +16,7 @@ export const useHistory = createSharedComposable(() => {
    */
   const fetchHistory = async () => {
     try {
-      const response = await api.get(`/history`)
+      const response = await api.get(`/user/me/history`)
       if (response.status === 200) {
         history.value = response.data
       }

@@ -70,6 +70,20 @@ export const useEntries = createSharedComposable(() => {
     }
   }
 
+  const goToWord = (direction: 'prev' | 'next') => {
+    if (!entry.value) return
+
+    const currentIndex = words.value.findIndex((w) => w.word === entry.value!.word)
+    if (currentIndex === -1) return
+
+    const nextIndex = direction === 'prev' ? currentIndex - 1 : currentIndex + 1
+    const nextEntry = words.value[nextIndex]
+
+    if (nextEntry) {
+      loadDefinition(nextEntry.word)
+    }
+  }
+
   return {
     words,
     entry,
@@ -77,6 +91,7 @@ export const useEntries = createSharedComposable(() => {
     fetchEntries,
     resetEntries,
     loadDefinition,
+    goToWord,
     loading,
     page,
     noMore,

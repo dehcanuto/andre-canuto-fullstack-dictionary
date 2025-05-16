@@ -27,8 +27,8 @@
       </ul>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-      <base-button label="Voltar"></base-button>
-      <base-button label="Próximo"></base-button>
+      <base-button label="Voltar" @click="goToWord('prev')"></base-button>
+      <base-button label="Próximo" @click="goToWord('next')"></base-button>
     </div>
   </div>
   <div v-else class="animate-pulse">
@@ -58,8 +58,10 @@ import { type DictionaryEntry } from '@models/dictionary'
 import IconFavorite from '@icons/IconFavorite.vue'
 import AudioPlayer from './AudioPlayer.vue'
 import BaseButton from '../atoms/BaseButton.vue'
+import { useEntries } from '@/composables/useEntries'
 
 const { isFavorite, handleAddOrRemoveFavorite, fetchFavorites } = useFavorites()
+const { goToWord } = useEntries()
 
 defineProps<{ entry?: DictionaryEntry; loading: boolean }>()
 
