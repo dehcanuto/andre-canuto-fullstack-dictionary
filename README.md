@@ -39,6 +39,14 @@ Com o docker rodando, utilize a rota [http://localhost:3000/entries/en/import](h
 - Gestão de dados (Redux, Context API, Localstorage, etc)
 - Conceitos de Programação Funcional em JS (pelo menos .map, .filter e .reduce) ✅
 
+#### Rodar Test
+
+Este projeto utiliza o `vitest` para testes unitarios. Para rodar os testes, basta executar este comando no terminal.
+
+```bash
+yarn test:unit  
+```
+
 ### Atividades
 
 - [x] Como usuário, devo ser capaz de realizar login com usuário e senha

@@ -78,6 +78,7 @@ export const useEntries = createSharedComposable(() => {
     resetEntries,
     loadDefinition,
     loading,
+    page,
     noMore,
   }
 })
