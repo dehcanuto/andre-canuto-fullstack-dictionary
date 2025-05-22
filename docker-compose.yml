@@ -30,9 +30,24 @@ services:
     networks:
       - backend_network
 
-  frontend:
+  frontend-react:
+    build: ./frontend-react
+    container_name: frontend-react
+    ports:
+      - "5174:5174"
+    volumes:
+      - ./frontend-react:/app
+      - /app/node_modules
+    working_dir: /app
+    depends_on:
+      - backend
+    restart: always
+    networks:
+      - backend_network
+
+  frontend-vue:
     build: ./frontend-vue
-    container_name: frontend
+    container_name: frontend-vue
     ports:
       - "5173:5173"
     volumes:

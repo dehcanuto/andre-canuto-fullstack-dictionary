@@ -34,7 +34,8 @@ docker-compose up --build
 
 #### 2. Frontend
 
-O frontend será apresentado através do link [http://localhost:5173](http://localhost:5173).
+O frontend em vue será apresentado através do link [http://localhost:5173](http://localhost:5173).
+O frontend em react será apresentado através do link [http://localhost:5173](http://localhost:5174).
 
 #### 2. Backend
 
@@ -46,7 +47,7 @@ Com o docker rodando, utilize a rota [http://localhost:3000/entries/en/import](h
 
 ### Tecnologias (Front-End):
 
-- Vue.js
+- Vue / React (ambos TypeScript com Vite)
 - Tailwind CSS
 - CSS Flexbox + CSS Grid
 - Design Mobile First
