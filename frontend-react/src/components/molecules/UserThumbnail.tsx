@@ -5,7 +5,7 @@ interface UserThumbnailProps {
 }
 
 function formatUserName(name: string) {
-  // exemplo simples, você pode ajustar conforme seu format
+  if (!name) return
   const parts = name.trim().split(' ')
   if (parts.length === 0) return ''
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase()
