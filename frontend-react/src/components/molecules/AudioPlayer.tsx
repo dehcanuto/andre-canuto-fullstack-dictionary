@@ -4,7 +4,7 @@ interface AudioPlayerProps {
   audio?: string
 }
 
-export const AudioPlayer: React.FC<AudioPlayerProps> = ({ audio }) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ audio }) => {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [progress, setProgress] = useState(0)
 
@@ -61,3 +61,5 @@ export const AudioPlayer: React.FC<AudioPlayerProps> = ({ audio }) => {
     </div>
   )
 }
+
+export default AudioPlayer

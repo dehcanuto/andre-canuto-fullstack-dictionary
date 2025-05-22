@@ -15,13 +15,13 @@ export function useEntries() {
   const [entry, setEntry] = useState<DictionaryEntry | null>(null)
   const [error, setError] = useState('')
 
-  const fetchEntries = useCallback(async () => {
+  const fetchEntries = useCallback(async (customPage = 1) => {
     if (noMore || loading) return
     setLoading(true)
 
     try {
       const response = await api.get('/entries/en', {
-        params: { page, limit },
+        params: { page: customPage, limit },
       })
 
       const newWords: DictionaryEntry[] = response.data.results
@@ -30,13 +30,15 @@ export function useEntries() {
       }
 
       setWords((prev) => [...prev, ...newWords])
-      setPage((prev) => prev + 1)
+      setPage(customPage + 1)
     } catch (err) {
       toast.error('Erro ao buscar palavras')
     } finally {
       setLoading(false)
+      console.log('finally words', words)
     }
-  }, [page, limit, noMore, loading])
+  }, [noMore, loading, limit])
+
 
   const resetEntries = useCallback(() => {
     setWords([])

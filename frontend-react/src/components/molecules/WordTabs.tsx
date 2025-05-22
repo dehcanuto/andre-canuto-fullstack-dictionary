@@ -20,10 +20,9 @@ const WordTabs: React.FC<WordTabsProps> = ({ tabs, defaultTab, children }) => {
     }
   }, [defaultTab])
 
-  // Filtra o slot equivalente ao Vue via children
   const getSlotContent = () => {
     const slot = React.Children.toArray(children).find(
-      (child: any) => child.props?.slot === activeTab
+      (child: any) => child.props?.tab === activeTab
     )
     return slot || null
   }
@@ -46,7 +45,6 @@ const WordTabs: React.FC<WordTabsProps> = ({ tabs, defaultTab, children }) => {
           </button>
         ))}
       </div>
-
       <div className="bg-slate-100 text-gray-500 rounded-sm mt-4 p-4">
         {getSlotContent()}
       </div>

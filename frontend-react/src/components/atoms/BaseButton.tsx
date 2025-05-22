@@ -6,7 +6,7 @@ interface BaseButtonProps {
   onClick?: () => void
 }
 
-export const BaseButton: React.FC<BaseButtonProps> = ({ label, disabled, onClick }) => {
+const BaseButton: React.FC<BaseButtonProps> = ({ label, disabled, onClick }) => {
   return (
     <button
       type="button"
@@ -18,3 +18,5 @@ export const BaseButton: React.FC<BaseButtonProps> = ({ label, disabled, onClick
     </button>
   )
 }
+
+export default BaseButton

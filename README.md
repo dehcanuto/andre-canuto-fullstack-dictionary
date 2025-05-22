@@ -45,6 +45,17 @@ O frontend será apresentado através do link [http://localhost:3000](http://loc
 
 Com o docker rodando, utilize a rota [http://localhost:3000/entries/en/import](http://localhost:3000/entries/en/import) para importar as palavras.
 
+### Login
+
+Um usuário de teste já está disponível no cluster para facilitar os testes de autenticação:
+
+```txt
+Email:    user@teste.com
+Senha:    1234
+```
+
+Use essas credenciais para acessar a aplicação.
+
 ### Tecnologias (Front-End):
 
 - Vue / React (ambos TypeScript com Vite)

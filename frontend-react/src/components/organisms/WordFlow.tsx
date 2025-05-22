@@ -31,7 +31,7 @@ const WordFlow: React.FC = () => {
   const init = async () => {
     await loadDefinition(word)
     resetEntries()
-    await fetchEntries()
+    await fetchEntries(1)
     await fetchHistory()
     await fetchFavorites()
   }
@@ -51,28 +51,29 @@ const WordFlow: React.FC = () => {
 
   return (
     <div className="container mx-auto min-h-screen">
-      <div className="flex flex-col md:flex-row gap-4 mt-4">
-        <div className="w-full md:w-1/3">
-          <WordCard entry={entry} loading={entriesLoading} />
+        <div className="flex flex-col md:flex-row gap-4 mt-4">
+            <div className="w-full md:w-1/3">
+                <WordCard entry={entry} loading={entriesLoading} />
+            </div>
+            <div className="w-full md:w-2/3">
+                <WordTabs tabs={tabList}>
+                    <div tab="word-list">
+                        <WordsList
+                            items={words}
+                            onSelect={handleLoadDefinition}
+                            onLoadMore={handleMoreWords}
+                            loading={entriesLoading}
+                        />
+                    </div>
+                    <div tab="history">
+                        <WordsList items={history} onSelect={handleLoadDefinition} loading={false} />
+                    </div>
+                    <div tab="favorites">
+                        <WordsList items={favorites} onSelect={handleLoadDefinition} loading={false} />
+                    </div>
+                </WordTabs>
+            </div>
         </div>
-        <div className="w-full md:w-2/3">
-          <WordTabs tabs={tabList}>
-            <div label="word-list" key="word-list">
-              <WordsList
-                items={words}
-                onSelect={handleLoadDefinition}
-                onLoadMore={handleMoreWords}
-              />
-            </div>
-            <div label="history" key="history">
-              <WordsList items={history} onSelect={handleLoadDefinition} />
-            </div>
-            <div label="favorites" key="favorites">
-              <WordsList items={favorites} onSelect={handleLoadDefinition} />
-            </div>
-          </WordTabs>
-        </div>
-      </div>
     </div>
   )
 }
